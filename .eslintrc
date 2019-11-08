@@ -2,7 +2,7 @@
    "extends": "react-app",
    "rules": {
       "indent": [
-         "error",
+         "warn",
          3
       ]
    }
