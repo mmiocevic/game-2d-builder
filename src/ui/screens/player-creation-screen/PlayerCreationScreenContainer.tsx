@@ -41,7 +41,7 @@ class PlayerCreationScreenContainer extends React.Component<PlayerCreationScreen
          <div className={`${className}`}>
             <div className={`${className}__welcome-message`}>{getLocalizedMessage('Welcome!')}</div>
 
-            <div>
+            <div className={`${className}__input-name`}>
                <div>{getLocalizedMessage('WhatIsYourName?')}</div>
                <Input
                   value={this.state.currentPlayerName}
@@ -51,7 +51,12 @@ class PlayerCreationScreenContainer extends React.Component<PlayerCreationScreen
 
             <Anim showWhen={playerName !== ''}>
                <>
-                  {playerName && (<div>{getLocalizedMessage('Hello')} {playerName}!</div>)}
+                  {playerName && (
+                     <div className={`${className}__player-name`}>
+                        <p>{getLocalizedMessage('Hello')} {playerName}!</p>
+                        <p>{getLocalizedMessage('WhatKindOfHairWouldYouLike?')}</p>
+                     </div>
+                  )}
                   <PlayerGenderChooserComponent
                      playerGender={playerGender}
                      setPlayerGender={setPlayerGender}

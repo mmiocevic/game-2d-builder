@@ -1,8 +1,11 @@
 import React from 'react';
 import { getLocalizedMessage } from '../../../../configurations/localization/messages';
 import { PlayerGender } from '../../../../domain/player/PlayerActionTypes';
-import RadioGroup from 'antd/lib/radio/group';
-import Radio from 'antd/lib/radio';
+import male from '../../../../assets/images/gender/male.svg';
+import female from '../../../../assets/images/gender/female.svg';
+import './PlayerGenderChooser.less';
+
+const className: string = 'player-gender-chooser';
 
 interface PlayerGenderChooserProps {
    playerGender: PlayerGender;
@@ -10,19 +13,50 @@ interface PlayerGenderChooserProps {
 }
 
 export const PlayerGenderChooserComponent = (props: PlayerGenderChooserProps) => (
-   <div>
-      <RadioGroup
-         value={props.playerGender}
-         onChange={(e) => props.setPlayerGender(e.target.value)}
-      >
-         <Radio value={PlayerGender.MALE}>{getLocalizedMessage('Male')}</Radio>
-         <Radio value={PlayerGender.FEMALE}>{getLocalizedMessage('Female')}</Radio>
-      </RadioGroup>
-      <div>
-         Boy {props.playerGender}
+   <div
+      className={className}
+   >
+      <div className={`${className}__gender-block`}>
+         <div
+            className={formatGenderCheckerClassName(props.playerGender, PlayerGender.MALE)}
+            onClick={() => props.setPlayerGender(PlayerGender.MALE)}
+         />
+
+         <div className={`${className}__gender-block__label`}>
+            {getLocalizedMessage('ShortHair')}
+         </div>
+         <div className={`${className}__gender-block__image`}>
+            <img
+               className={formatGenderImageClassName(props.playerGender, PlayerGender.MALE)}
+               src={male}
+               alt="Male"
+            />
+         </div>
       </div>
-      <div>
-         Girl
+
+      <div className={`${className}__gender-block`}>
+         <div
+            className={formatGenderCheckerClassName(props.playerGender, PlayerGender.FEMALE)}
+            onClick={() => props.setPlayerGender(PlayerGender.FEMALE)}
+         />
+
+         <div className={`${className}__gender-block__label`}>
+            {getLocalizedMessage('LongHair')}
+         </div>
+         <div className={`${className}__gender-block__image`}>
+            <img
+               className={formatGenderImageClassName(props.playerGender, PlayerGender.FEMALE)}
+               src={female}
+               alt="Female"/>
+         </div>
       </div>
    </div>
 );
+
+const formatGenderCheckerClassName = (selectedPlayerGender: PlayerGender, gender: PlayerGender) =>
+   selectedPlayerGender === gender ?
+      `${className}__gender-block__checker ${className}__gender-block__checker--selected` :
+      `${className}__gender-block__checker`;
+
+const formatGenderImageClassName = (selectedPlayerGender: PlayerGender, gender: PlayerGender) =>
+   selectedPlayerGender === gender ? '' : `${className}__gender-block__image--deselected`;

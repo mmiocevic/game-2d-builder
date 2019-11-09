@@ -29,7 +29,9 @@ export const Anim = (props: AnimProps) => (
          <div
             style={{
                ...getDefaultStyle(props.duration || defaultDuration),
-               ...transitionStyles[state] as CSSProperties
+               ...transitionStyles[state] as CSSProperties,
+               width: '100%',
+               height: '100%'
             }}
          >
             {props.children}

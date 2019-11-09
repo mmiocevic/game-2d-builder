@@ -1,17 +1,17 @@
 import { getDefaultLocale } from './locales';
 
 export const messages = {
-   'Female': {
-      en: 'Female',
-      hr: 'Žensko'
+   'LongHair': {
+      en: 'Long Hair',
+      hr: 'Duga kosa'
    },
    'Hello': {
       en: 'Hello',
       hr: 'Pozdrav'
    },
-   'Male': {
-      en: 'Male',
-      hr: 'Muško'
+   'ShortHair': {
+      en: 'Short Hair',
+      hr: 'Kratka kosa'
    },
    'Start': {
       en: 'Start',
@@ -24,6 +24,10 @@ export const messages = {
    'WhatIsYourName?': {
       en: 'What is your name?',
       hr: 'Kako se zoveš?'
+   },
+   'WhatKindOfHairWouldYouLike?': {
+      en: 'What kind of hair would you like?',
+      hr: 'Kakvu kosu želiš?'
    }
 };
 

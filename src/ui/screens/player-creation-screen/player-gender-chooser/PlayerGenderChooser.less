@@ -1,0 +1,58 @@
+@import (reference) '../../../../index';
+
+.player-gender-chooser {
+   display: flex !important;
+   padding: @padding-margin-large !important;
+   justify-content: space-evenly;
+
+   &__gender-block {
+      text-align: center;
+
+      &__checker {
+         width: 20px;
+         height: 20px;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         margin: 0 auto;
+         background: white;
+         padding: @padding-margin-large;
+         border-radius: 5px;
+         cursor: pointer;
+         border: 4px solid #595959;
+
+         &--selected {
+            background: yellow;
+            position: relative;
+
+            &::after {
+               content: '';
+               position: absolute;
+               top: 64px;
+               width: 0;
+               height: 0;
+               border-left: 150px solid transparent;
+               border-right: 150px solid transparent;
+               border-bottom: 150px solid #ffff0017;
+            }
+         }
+      }
+
+      &__label {
+         padding: @padding-margin-large !important;
+
+         span {
+            font-size: @font-size-extra-large;
+         }
+      }
+
+      &__image img {
+         height: 300px;
+      }
+
+      &__image--deselected {
+         -webkit-filter: grayscale(100%);
+         filter: grayscale(100%);
+      }
+   }
+}
