@@ -1,1 +1,0 @@
-export const GLOBAL_PREFIX: string = 'g2db';

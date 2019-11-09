@@ -1,21 +1,19 @@
 import React from 'react';
-import { Area } from '../game-engine/graphics/environment/area/Area';
-import { GrassTerrain } from '../game-engine/graphics/environment/terrains/grass/GrassTerrain';
-import { WaterTerrain } from '../game-engine/graphics/environment/terrains/water/WaterTerrain';
+import { StartScreenComponent } from './screens/start-screen/StartScreenComponent';
+import PlayerCreationScreenComponent from './screens/player-creation-screen/PlayerCreationScreenContainer';
 import './GameApp.less';
-import '../game-engine/graphics/GraphicsStyles';
 
 export const GameApp = () => {
+   const [ gameStarted, setGameStarted ] = React.useState(false);
+
    return (
-      <div className="game-app">
-         <Area
-            terrains={[
-               [ <WaterTerrain/>, <GrassTerrain/>, <GrassTerrain/> ],
-               [ <GrassTerrain/>, <WaterTerrain/>, <GrassTerrain/> ],
-               [ <GrassTerrain/>, <GrassTerrain/>, <WaterTerrain/> ]
-            ]}
-            characters={[]}
-         />
+      <div id="game-app">
+         {!gameStarted && (
+            <StartScreenComponent onStart={() => setGameStarted(true)}/>
+         )}
+         {gameStarted && (
+            <PlayerCreationScreenComponent/>
+         )}
       </div>
    );
 };
