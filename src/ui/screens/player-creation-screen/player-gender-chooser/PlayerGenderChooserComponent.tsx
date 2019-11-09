@@ -10,21 +10,19 @@ interface PlayerGenderChooserProps {
 }
 
 export const PlayerGenderChooserComponent = (props: PlayerGenderChooserProps) => (
-   <>
+   <div>
+      <RadioGroup
+         value={props.playerGender}
+         onChange={(e) => props.setPlayerGender(e.target.value)}
+      >
+         <Radio value={PlayerGender.MALE}>{getLocalizedMessage('Male')}</Radio>
+         <Radio value={PlayerGender.FEMALE}>{getLocalizedMessage('Female')}</Radio>
+      </RadioGroup>
       <div>
-         <RadioGroup
-            value={props.playerGender}
-            onChange={(e) => props.setPlayerGender(e.target.value)}
-         >
-            <Radio value={PlayerGender.MALE}>{getLocalizedMessage('Male')}</Radio>
-            <Radio value={PlayerGender.FEMALE}>{getLocalizedMessage('Female')}</Radio>
-         </RadioGroup>
-         <div>
-            Boy {props.playerGender}
-         </div>
-         <div>
-            Girl
-         </div>
+         Boy {props.playerGender}
       </div>
-   </>
+      <div>
+         Girl
+      </div>
+   </div>
 );

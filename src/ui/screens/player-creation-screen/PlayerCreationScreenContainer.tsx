@@ -4,10 +4,14 @@ import { connect } from 'react-redux';
 import { GameAppStore } from '../../../configurations/Store';
 import { getLocalizedMessage } from '../../../configurations/localization/messages';
 import { setGenderActionCreator, setNameActionCreator } from '../../../domain/player/PlayerActionCreators';
-import { debounce } from '../../../utilities/debounce';
-import Input from 'antd/lib/input/index';
 import { PlayerGender } from '../../../domain/player/PlayerActionTypes';
+import { debounce } from '../../../utilities/debounce';
+import { Anim } from '../../__internal__/anim/Anim';
+import Input from 'antd/lib/input/index';
 import { PlayerGenderChooserComponent } from './player-gender-chooser/PlayerGenderChooserComponent';
+import './PlayerCreationScreen.less';
+
+const className: string = 'player-creation-screen';
 
 interface PlayerCreationScreenState {
    currentPlayerName: string;
@@ -34,8 +38,8 @@ class PlayerCreationScreenContainer extends React.Component<PlayerCreationScreen
       const { playerName, playerGender, setPlayerGender } = this.props;
 
       return (
-         <div>
-            <div>{getLocalizedMessage('Welcome!')}</div>
+         <div className={`${className}`}>
+            <div className={`${className}__welcome-message`}>{getLocalizedMessage('Welcome!')}</div>
 
             <div>
                <div>{getLocalizedMessage('WhatIsYourName?')}</div>
@@ -45,15 +49,15 @@ class PlayerCreationScreenContainer extends React.Component<PlayerCreationScreen
                />
             </div>
 
-            {playerName && (
+            <Anim showWhen={playerName !== ''}>
                <>
-                  <div>{getLocalizedMessage('Hello')} {playerName}!</div>
+                  {playerName && (<div>{getLocalizedMessage('Hello')} {playerName}!</div>)}
                   <PlayerGenderChooserComponent
                      playerGender={playerGender}
                      setPlayerGender={setPlayerGender}
                   />
                </>
-            )}
+            </Anim>
          </div>
       );
    }

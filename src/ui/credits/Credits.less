@@ -1,0 +1,24 @@
+@import (reference) '../../index';
+
+.credits {
+   &__content {
+      font-size: @font-size-small;
+      text-align: center;
+
+      &__me {
+         width: 100px;
+         height: 100px;
+         margin: 0 auto @padding-margin-medium auto;
+         border-radius: 50%;
+         background-size: cover;
+         background-image: url('../../assets/images/me/me.jpg');
+
+         &__email {
+            div {
+               font-size: @font-size-small;
+               line-height: 20px;
+            }
+         }
+      }
+   }
+}

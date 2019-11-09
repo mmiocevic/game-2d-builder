@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { store } from './configurations/Store';
-import { GameApp } from './ui/GameApp';
+import GameApp from './ui/GameApp';
+import './assets/fonts/PressStart2P/PressStart2P-Regular.ttf';
 import 'antd/dist/antd.css';
 import './index.less';
 
