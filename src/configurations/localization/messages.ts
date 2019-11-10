@@ -1,6 +1,10 @@
 import { getDefaultLocale } from './locales';
 
 export const messages = {
+   'LetsGo!': {
+      en: 'Let\'s Go!',
+      hr: 'Idemo!'
+   },
    'LongHair': {
       en: 'Long Hair',
       hr: 'Duga kosa'

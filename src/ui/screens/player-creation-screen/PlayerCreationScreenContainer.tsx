@@ -7,10 +7,11 @@ import { setGenderActionCreator, setNameActionCreator } from '../../../domain/pl
 import { PlayerGender } from '../../../domain/player/PlayerActionTypes';
 import { debounce } from '../../../utilities/debounce';
 import { Anim, DEFAULT_DELAY } from '../../__internal__/anim/Anim';
+import { P } from '../../__internal__/p/P';
 import Input from 'antd/lib/input/index';
 import { PlayerGenderChooserComponent } from './player-gender-chooser/PlayerGenderChooserComponent';
 import './PlayerCreationScreen.less';
-import { P } from '../../__internal__/p/P';
+import Button from 'antd/lib/button';
 
 const className: string = 'player-creation-screen';
 
@@ -48,6 +49,7 @@ class PlayerCreationScreenContainer extends React.Component<PlayerCreationScreen
                <>
                   <P>{getLocalizedMessage('WhatIsYourName?')}</P>
                   <Input
+                     maxLength={20}
                      value={this.state.currentPlayerName}
                      onChange={this.onPlayerNameChange}
                   />
@@ -69,6 +71,17 @@ class PlayerCreationScreenContainer extends React.Component<PlayerCreationScreen
                         />
                      </>
                   </Anim>
+
+                  {playerGender !== PlayerGender.NONE && (
+                     <div className={`${className}__continue`}>
+                        <Button
+                           type={'primary'}
+                           size={'large'}
+                        >
+                           {getLocalizedMessage('LetsGo!')}
+                        </Button>
+                     </div>
+                  )}
                </>
             )}
          </div>
@@ -79,6 +92,14 @@ class PlayerCreationScreenContainer extends React.Component<PlayerCreationScreen
       this.setState({
          currentPlayerName: e.target.value
       });
+
+      if (e.target.value === '' && this.props.playerGender !== PlayerGender.NONE) {
+         this.props.setPlayerGender(PlayerGender.NONE);
+         this.props.setPlayerName('');
+
+         return;
+      }
+
       this.setPlayerNameDebounced();
    };
 }
