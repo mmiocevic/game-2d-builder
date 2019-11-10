@@ -4,6 +4,7 @@ import { PlayerGender } from '../../../../domain/player/PlayerActionTypes';
 import male from '../../../../assets/images/gender/male.svg';
 import female from '../../../../assets/images/gender/female.svg';
 import './PlayerGenderChooser.less';
+import { P } from '../../../__internal__/p/P';
 
 const className: string = 'player-gender-chooser';
 
@@ -22,9 +23,8 @@ export const PlayerGenderChooserComponent = (props: PlayerGenderChooserProps) =>
             onClick={() => props.setPlayerGender(PlayerGender.MALE)}
          />
 
-         <div className={`${className}__gender-block__label`}>
-            {getLocalizedMessage('ShortHair')}
-         </div>
+         <P>{getLocalizedMessage('ShortHair')}</P>
+
          <div className={`${className}__gender-block__image`}>
             <img
                className={formatGenderImageClassName(props.playerGender, PlayerGender.MALE)}
@@ -40,9 +40,8 @@ export const PlayerGenderChooserComponent = (props: PlayerGenderChooserProps) =>
             onClick={() => props.setPlayerGender(PlayerGender.FEMALE)}
          />
 
-         <div className={`${className}__gender-block__label`}>
-            {getLocalizedMessage('LongHair')}
-         </div>
+         <P>{getLocalizedMessage('LongHair')}</P>
+
          <div className={`${className}__gender-block__image`}>
             <img
                className={formatGenderImageClassName(props.playerGender, PlayerGender.FEMALE)}

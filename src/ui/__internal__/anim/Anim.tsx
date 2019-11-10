@@ -1,6 +1,7 @@
 import React, { CSSProperties } from 'react';
 import Transition from 'react-transition-group/Transition';
 
+export const DEFAULT_DELAY: number = 2000;
 const defaultDuration: number = 1000;
 const getDefaultStyle = (duration: number) => ({
    transition: `opacity ${duration}ms ease-in-out`,
@@ -15,27 +16,48 @@ const transitionStyles = {
 
 interface AnimProps {
    children: JSX.Element;
-   showWhen: boolean;
-   duration?: number;
+   showWhen?: boolean;
+   showAfter?: number;
 }
 
-export const Anim = (props: AnimProps) => (
-   <Transition
-      unmountOnExit={true}
-      in={props.showWhen}
-      timeout={props.duration || defaultDuration}
-   >
-      {(state: keyof object) => (
-         <div
-            style={{
-               ...getDefaultStyle(props.duration || defaultDuration),
-               ...transitionStyles[state] as CSSProperties,
-               width: '100%',
-               height: '100%'
-            }}
-         >
-            {props.children}
-         </div>
-      )}
-   </Transition>
-);
+export const Anim = (props: AnimProps) => {
+   let [ show, setShow ] = React.useState(false);
+   const { children, showAfter, showWhen } = props;
+
+   React.useEffect(() => {
+      if (show) {
+         return;
+      }
+
+      if (showWhen !== false) {
+         if (showAfter) {
+            setTimeout(() => setShow(true), showAfter);
+         }
+         else {
+            setShow(true);
+         }
+      }
+   }, [ show, showAfter, showWhen ]);
+
+   return (
+      <Transition
+         unmountOnExit={true}
+         in={show}
+         timeout={defaultDuration}
+      >
+         {(state: keyof object) => (
+            <div
+               style={{
+                  ...getDefaultStyle(defaultDuration),
+                  ...transitionStyles[state] as CSSProperties,
+                  display: 'flex',
+                  flex: 1,
+                  flexDirection: 'column'
+               }}
+            >
+               {children}
+            </div>
+         )}
+      </Transition>
+   );
+};

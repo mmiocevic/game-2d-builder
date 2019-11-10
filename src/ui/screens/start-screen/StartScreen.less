@@ -1,4 +1,4 @@
-@import (reference) '../../../index';
+@import (reference) '../../../globals/Globals';
 
 .start-screen {
    width: 100%;
@@ -11,11 +11,10 @@
    &__title {
       position: relative;
       top: -100px;
-      color: @text-color;
    }
 
    &__start-button {
-      margin-bottom: @padding-margin-medium;
+      margin-bottom: @padding-margin-large;
 
       button {
          border: 12px double @brown;
@@ -25,10 +24,6 @@
          font-size: @font-size-extra-large;
          line-height: @font-size-extra-large;
       }
-   }
-
-   &__locale-changer {
-      padding: @padding-margin-medium;
    }
 
    &__credits {

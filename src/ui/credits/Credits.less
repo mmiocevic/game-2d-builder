@@ -1,24 +1,14 @@
-@import (reference) '../../index';
+@import (reference) '../../globals/Globals';
 
 .credits {
-   &__content {
-      font-size: @font-size-small;
-      text-align: center;
+   text-align: center;
 
-      &__me {
-         width: 100px;
-         height: 100px;
-         margin: 0 auto @padding-margin-medium auto;
-         border-radius: 50%;
-         background-size: cover;
-         background-image: url('../../assets/images/me/me.jpg');
-
-         &__email {
-            div {
-               font-size: @font-size-small;
-               line-height: 20px;
-            }
-         }
-      }
+   &__me {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto @padding-margin-medium auto;
+      border-radius: 50%;
+      background-size: cover;
+      background-image: url('../../assets/images/me/me.jpg');
    }
 }

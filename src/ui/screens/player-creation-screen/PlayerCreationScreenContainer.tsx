@@ -6,10 +6,11 @@ import { getLocalizedMessage } from '../../../configurations/localization/messag
 import { setGenderActionCreator, setNameActionCreator } from '../../../domain/player/PlayerActionCreators';
 import { PlayerGender } from '../../../domain/player/PlayerActionTypes';
 import { debounce } from '../../../utilities/debounce';
-import { Anim } from '../../__internal__/anim/Anim';
+import { Anim, DEFAULT_DELAY } from '../../__internal__/anim/Anim';
 import Input from 'antd/lib/input/index';
 import { PlayerGenderChooserComponent } from './player-gender-chooser/PlayerGenderChooserComponent';
 import './PlayerCreationScreen.less';
+import { P } from '../../__internal__/p/P';
 
 const className: string = 'player-creation-screen';
 
@@ -39,30 +40,37 @@ class PlayerCreationScreenContainer extends React.Component<PlayerCreationScreen
 
       return (
          <div className={`${className}`}>
-            <div className={`${className}__welcome-message`}>{getLocalizedMessage('Welcome!')}</div>
+            <Anim>
+               <P large={true}>{getLocalizedMessage('Welcome!')}</P>
+            </Anim>
 
-            <div className={`${className}__input-name`}>
-               <div>{getLocalizedMessage('WhatIsYourName?')}</div>
-               <Input
-                  value={this.state.currentPlayerName}
-                  onChange={this.onPlayerNameChange}
-               />
-            </div>
-
-            <Anim showWhen={playerName !== ''}>
+            <Anim showAfter={DEFAULT_DELAY}>
                <>
-                  {playerName && (
-                     <div className={`${className}__player-name`}>
-                        <p>{getLocalizedMessage('Hello')} {playerName}!</p>
-                        <p>{getLocalizedMessage('WhatKindOfHairWouldYouLike?')}</p>
-                     </div>
-                  )}
-                  <PlayerGenderChooserComponent
-                     playerGender={playerGender}
-                     setPlayerGender={setPlayerGender}
+                  <P>{getLocalizedMessage('WhatIsYourName?')}</P>
+                  <Input
+                     value={this.state.currentPlayerName}
+                     onChange={this.onPlayerNameChange}
                   />
                </>
             </Anim>
+
+            {playerName !== '' && (
+               <>
+                  <Anim>
+                     <P>{getLocalizedMessage('Hello')} {playerName}!</P>
+                  </Anim>
+
+                  <Anim showAfter={DEFAULT_DELAY}>
+                     <>
+                        <P>{getLocalizedMessage('WhatKindOfHairWouldYouLike?')}</P>
+                        <PlayerGenderChooserComponent
+                           playerGender={playerGender}
+                           setPlayerGender={setPlayerGender}
+                        />
+                     </>
+                  </Anim>
+               </>
+            )}
          </div>
       );
    }

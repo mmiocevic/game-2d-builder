@@ -6,7 +6,7 @@ import { store } from './configurations/Store';
 import GameApp from './ui/GameApp';
 import './assets/fonts/PressStart2P/PressStart2P-Regular.ttf';
 import 'antd/dist/antd.css';
-import './index.less';
+import './globals/Globals.less';
 
 ReactDOM.render(
    <Provider store={store}>

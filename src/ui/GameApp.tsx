@@ -1,12 +1,11 @@
 import React from 'react';
-import { GameAppStore } from '../configurations/Store';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import { GameAppStore } from '../configurations/Store';
 import { setStatusActionCreator } from '../domain/game/GameActionCreators';
 import { GameStatus } from '../domain/game/GameActionTypes';
-import PlayerCreationScreenComponent from './screens/player-creation-screen/PlayerCreationScreenContainer';
 import { StartScreenComponent } from './screens/start-screen/StartScreenComponent';
-import { Anim } from './__internal__/anim/Anim';
+import PlayerCreationScreenComponent from './screens/player-creation-screen/PlayerCreationScreenContainer';
 import './GameApp.less';
 
 type GameAppProps = PropsState & DispatchState;
@@ -21,11 +20,9 @@ class GameApp extends React.Component<GameAppProps> {
                <StartScreenComponent onStart={() => setGameStatus(GameStatus.PLAYER_CREATION)}/>
             )}
 
-            <Anim
-               showWhen={gameStatus === GameStatus.PLAYER_CREATION}
-            >
+            {gameStatus === GameStatus.PLAYER_CREATION && (
                <PlayerCreationScreenComponent/>
-            </Anim>
+            )}
          </div>
       );
    }

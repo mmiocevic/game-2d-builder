@@ -1,4 +1,4 @@
-@import (reference) '../../../../index';
+@import (reference) '../../../../globals/Globals';
 
 .player-gender-chooser {
    display: flex !important;
@@ -9,14 +9,14 @@
       text-align: center;
 
       &__checker {
-         width: 20px;
-         height: 20px;
+         width: 15px;
+         height: 15px;
          display: flex;
          justify-content: center;
          align-items: center;
-         margin: 0 auto;
+         margin: @padding-margin-large auto;
          background: white;
-         padding: @padding-margin-large;
+         padding: @padding-margin-medium;
          border-radius: 5px;
          cursor: pointer;
          border: 4px solid #595959;
@@ -28,21 +28,13 @@
             &::after {
                content: '';
                position: absolute;
-               top: 64px;
+               top: 40px;
                width: 0;
                height: 0;
                border-left: 150px solid transparent;
                border-right: 150px solid transparent;
                border-bottom: 150px solid #ffff0017;
             }
-         }
-      }
-
-      &__label {
-         padding: @padding-margin-large !important;
-
-         span {
-            font-size: @font-size-extra-large;
          }
       }
 
