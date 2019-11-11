@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { GameAppStore } from '../configurations/Store';
 import { setStatusActionCreator } from '../domain/game/GameActionCreators';
 import { GameStatus } from '../domain/game/GameActionTypes';
+import { SoundAffirmative } from '../globals/Globals';
 import { StartScreenComponent } from './screens/start-screen/StartScreenComponent';
 import PlayerCreationScreenComponent from './screens/player-creation-screen/PlayerCreationScreenContainer';
 import './GameApp.less';
@@ -17,7 +18,12 @@ class GameApp extends React.Component<GameAppProps> {
       return (
          <div id="game-app">
             {gameStatus === GameStatus.WELCOME && (
-               <StartScreenComponent onStart={() => setGameStatus(GameStatus.PLAYER_CREATION)}/>
+               <StartScreenComponent
+                  onStart={() => {
+                     new Audio(SoundAffirmative).play();
+                     setGameStatus(GameStatus.PLAYER_CREATION);
+                  }}
+               />
             )}
 
             {gameStatus === GameStatus.PLAYER_CREATION && (
